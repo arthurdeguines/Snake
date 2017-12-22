@@ -3,6 +3,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -41,13 +42,16 @@ public class ActionSnake implements KeyListener{
 		score.setText("Score : "  + (Snake.taille-3) *100);
 		score.setEditable(false);
 		score.setFocusable(false);
+
 		score.setBackground(null);
 		JPanel panMap = new JPanel();
 		panMap.setSize(700,700);
 		panMap.setLayout(new GridLayout(20, 20, 0, 0));
 		for (int i = 0; i < Map.map.length; i++) {
 			for (int j = 0; j < Map.map.length; j++) {
+			
 				mapDessin[i][j] = new JPanel();
+				mapDessin[i][j].setBorder(BorderFactory.createLineBorder(new Color(0,255,0),2));
 				mapDessin[i][j].setBackground(Color.GREEN);
 				panMap.add(mapDessin[i][j]);
 			}
