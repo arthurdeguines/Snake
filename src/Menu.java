@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.text.View;
 
-public class Menu {
+public class Menu implements ActionListener{
 	JButton jeu;
 	JButton option;
 	JPanel menu;
@@ -26,25 +26,12 @@ public class Menu {
 		menu.setLayout(null);
 		jeu = new JButton();
 		
-		jeu.addActionListener(new ActionListener()
-		{
-		  public void actionPerformed(ActionEvent e)
-		  {
-			  jouer = true;
-		  }
-
-		});
+		jeu.addActionListener(this);
 		  
 		jeu.setText("Jouer");
 		jeu.setBounds((menu.getWidth()-200)/2,50,200,50);
 		option = new JButton();
-		option.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-			    System.out.println("Pas encore disponible");
-			  } 
-			});
+		option.addActionListener(this);
 		option.setText("Option");
 		option.setBounds((menu.getWidth()-200)/2,jeu.getHeight()+100,200,50);
 		menu.add(jeu);
@@ -60,6 +47,15 @@ public class Menu {
 
 	private void lancerJeu() {
 		new Jeu();
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jeu) {
+			jouer = true;
+		}else {
+			new Option();
+		}
 		
 	} 
 }

@@ -62,7 +62,7 @@ public class ActionSnake implements KeyListener{
 		frame.add(panScore);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 	}
 	public static void dessine() {
