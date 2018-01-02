@@ -6,8 +6,9 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame implements KeyListener{
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		new Menu();
+	while (1==1) {
 		while(!Menu.jouer) {
 			try {
 				Thread.sleep (200);
@@ -16,7 +17,10 @@ public class Main extends JFrame implements KeyListener{
 				e.printStackTrace();
 			}
 		}
+		
 		new Jeu();
+		Menu.jouer = false;
+		}
 	}
 	
 

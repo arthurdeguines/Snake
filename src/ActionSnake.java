@@ -51,8 +51,11 @@ public class ActionSnake implements KeyListener{
 			for (int j = 0; j < Map.map.length; j++) {
 			
 				mapDessin[i][j] = new JPanel();
+				if (!(i == 0 || j == 0 || Map.map.length -1 == j || Map.map.length -1 == i)) {
 				mapDessin[i][j].setBorder(BorderFactory.createLineBorder(new Color(0,255,0),2));
+				
 				mapDessin[i][j].setBackground(Color.GREEN);
+				}
 				panMap.add(mapDessin[i][j]);
 			}
 		}
@@ -62,7 +65,7 @@ public class ActionSnake implements KeyListener{
 		frame.add(panScore);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	public static void dessine() {
@@ -85,33 +88,42 @@ public class ActionSnake implements KeyListener{
 	}
 	public void keyPressed(KeyEvent e)
 	{	
+		if(Map.aJouer == false) {
 		switch (e.getKeyCode())
 		{
 			case KeyEvent.VK_RIGHT:
 				if(getDirection() != Direction.GAUCHE) {
 					setDirection(Direction.DROITE);
+					Map.aJouer = true;
 				}
 				break;
 			case KeyEvent.VK_LEFT:
 				if(getDirection() != Direction.DROITE) {
 					setDirection(Direction.GAUCHE);
+					Map.aJouer = true;
+
 				}
 				
 				break;
 			case KeyEvent.VK_UP:
 				if(getDirection() != Direction.BAS) {
 					setDirection(Direction.HAUT);
+					Map.aJouer = true;
+
 				}
 				
 				break;
 			case KeyEvent.VK_DOWN:
 				if(getDirection() != Direction.HAUT) {
 					setDirection(Direction.BAS);
+					Map.aJouer = true;
+
 				}
 				
 				break;
 		}
 	}
+	}	
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub

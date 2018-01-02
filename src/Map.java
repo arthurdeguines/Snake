@@ -2,6 +2,7 @@ import java.awt.Desktop.Action;
 import java.util.List;
 
 public class Map {
+	static boolean aJouer = false;
 	int largeur;
 	int longueur;
 	static Case[][] map;
@@ -14,6 +15,7 @@ public class Map {
 		map = initMap(longueur,largeur);
 		action = new ActionSnake();
 		perdu = false;
+	
 	}
 	private Case[][] initMap(int longueur, int largeur) {
 		map = new Case[longueur][largeur];
@@ -94,7 +96,7 @@ public class Map {
 		return res;
 	}
 	public void nextMap() {
-		
+		aJouer = false;
 		if(!(ActionSnake.scoreInt <=0)) {
 			action.addScore(-1);
 		}
