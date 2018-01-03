@@ -1,47 +1,82 @@
-import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import javax.swing.JToggleButton;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.DropMode;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JPanel;
 
 public class Option {
-	JButton jeu;
-	JButton option;
-	JPanel menu;
-	JFrame frame;
+	boolean accelerationNormal;
+	boolean enleverPointNormal;
+	boolean accelerationFun;
+	boolean enleverPointFun;
+	int vitesseFun;
+	int tailleMapFun;
+	
 	public Option() {
-		frame = new JFrame();
-		frame.setTitle("Lol");
-		frame.setBounds(100, 0, 500, 700);
-		frame.getContentPane().setLayout(null);
-		
-		//ACCELERATION
-		JPanel panAcceleration = new JPanel();
-		JCheckBox acceleration = new JCheckBox("Acceleration");
-		panAcceleration.add(acceleration);
-		panAcceleration.setBounds(100,100,200,50);
-		
-		//ENLEVER LES POINTS
-		JPanel panEnlevePoints = new JPanel();
-		JCheckBox enlevPoints = new JCheckBox("Enlever des points");
-		panEnlevePoints.add(enlevPoints);
-		panEnlevePoints.setBounds(100,200,200,50);
-		
-		//VITESSE
-		JPanel panVitesse = new JPanel();
-		JTextField vitesse = new JTextField("50");
-		panVitesse.setBounds(100,300,200,50);
-		panVitesse.add(vitesse);
-		
-		frame.add(panVitesse);
-		frame.add(panEnlevePoints);
-		frame.add(panAcceleration);
-		frame.setResizable(false);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+		this.accelerationNormal = true;
+		this.enleverPointNormal = true;
+		this.accelerationFun = true;
+		this.enleverPointFun = true;
+		this.vitesseFun = 50;
+		this.tailleMapFun = 20;
+	}
+
+	public boolean isAccelerationNormal() {
+		return accelerationNormal;
+	}
+
+	public void setAccelerationNormal(boolean accelerationNormal) {
+		this.accelerationNormal = accelerationNormal;
+	}
+
+	public boolean isEnleverPointNormal() {
+		return enleverPointNormal;
+	}
+
+	public void setEnleverPointNormal(boolean enleverPointNormal) {
+		this.enleverPointNormal = enleverPointNormal;
+	}
+
+	public boolean isAccelerationFun() {
+		return accelerationFun;
+	}
+
+	public void setAccelerationFun(boolean accelerationFun) {
+		this.accelerationFun = accelerationFun;
+	}
+
+	public boolean isEnleverPointFun() {
+		return enleverPointFun;
+	}
+
+	public void setEnleverPointFun(boolean enleverPointFun) {
+		this.enleverPointFun = enleverPointFun;
+	}
+
+	public int getVitesseFun() {
+		return vitesseFun;
+	}
+
+	public void setVitesseFun(int vitesseFun) {
+		this.vitesseFun = vitesseFun;
+	}
+
+	public int getTailleMapFun() {
+		return tailleMapFun;
+	}
+
+	public void setTailleMapFun(int tailleMapFun) {
+		this.tailleMapFun = tailleMapFun;
 	}
 }

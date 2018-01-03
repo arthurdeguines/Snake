@@ -1,19 +1,23 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import javafx.scene.text.Font;
 
-public class ActionSnake implements KeyListener{
+public class ActionSnake implements KeyListener,ActionListener{
 	Direction direction;
 	JTextArea score;
 	JFrame frame;
+	JButton retourMenu;
 	static JPanel[][] mapDessin ;
 	static int scoreInt = 0;
 	public ActionSnake() {
@@ -31,21 +35,25 @@ public class ActionSnake implements KeyListener{
 	}
 	public void fenetre() {
 		frame = new JFrame();
-		frame.setBounds(100, 0, 1000, 700);
+		frame.setBounds(100, 0, 900, 637);
 		mapDessin = new JPanel[20][20];
 		frame.getContentPane().setLayout(null);
 		JPanel panScore = new JPanel();
-		panScore.setBounds(700,0,300,140);
+		panScore.setBounds(600,0,300,140);
 		panScore.setBackground(new Color(100,200,200));
 		score = new JTextArea();
 		panScore.add(score);
 		score.setText("Score : "  + (Snake.taille-3) *100);
 		score.setEditable(false);
 		score.setFocusable(false);
+		retourMenu = new JButton("Retour au menu");
+		retourMenu.setBounds(600, 400, 300, 100);
+		retourMenu.addActionListener(this);
+		retourMenu.setFocusable(false);
 
 		score.setBackground(null);
 		JPanel panMap = new JPanel();
-		panMap.setSize(700,700);
+		panMap.setSize(600,600);
 		panMap.setLayout(new GridLayout(20, 20, 0, 0));
 		for (int i = 0; i < Map.map.length; i++) {
 			for (int j = 0; j < Map.map.length; j++) {
@@ -61,6 +69,7 @@ public class ActionSnake implements KeyListener{
 		}
 		
 		dessine();
+		frame.add(retourMenu);
 		frame.add(panMap);
 		frame.add(panScore);
 		frame.setVisible(true);
@@ -117,7 +126,7 @@ public class ActionSnake implements KeyListener{
 				if(getDirection() != Direction.HAUT) {
 					setDirection(Direction.BAS);
 					Map.aJouer = true;
-
+					
 				}
 				
 				break;
@@ -137,6 +146,15 @@ public class ActionSnake implements KeyListener{
 	public void addScore(int i) {
 		this.scoreInt += i;
 		score.setText("Score : "  + this.scoreInt);
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		Map.fermer = true;
+		Map.perdu = false;
+		frame.dispose();
+		new Menu();
+		
 		
 	}
 }

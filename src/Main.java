@@ -5,11 +5,14 @@ import javax.crypto.SecretKeyFactorySpi;
 import javax.swing.JFrame;
 
 public class Main extends JFrame implements KeyListener{
+	static Option option;
 	
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
+		boolean modeNormal;
+		option = new Option();
 		new Menu();
 	while (1==1) {
-		while(!Menu.jouer) {
+		while(!Menu.jouer ) {
 			try {
 				Thread.sleep (200);
 			} catch (InterruptedException e) {
@@ -17,9 +20,11 @@ public class Main extends JFrame implements KeyListener{
 				e.printStackTrace();
 			}
 		}
+		Menu.jouer=false;
+		Map.perdu=false;
+		Map.fermer = false;
+		new Jeu(Menu.getMode());
 		
-		new Jeu();
-		Menu.jouer = false;
 		}
 	}
 	

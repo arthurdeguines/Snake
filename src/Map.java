@@ -9,6 +9,7 @@ public class Map {
 	Snake snake;
 	ActionSnake action;
 	static boolean perdu;
+	public static boolean fermer = false;
 	public Map() {
 		this.longueur = 20;
 		this.largeur = 20;
