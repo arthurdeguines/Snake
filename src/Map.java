@@ -1,10 +1,13 @@
 import java.awt.Desktop.Action;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Map {
 	static boolean aJouer = false;
+	Option option;
 	int largeur;
 	int longueur;
+	boolean enleverPoint = true;
 	static Case[][] map;
 	Snake snake;
 	ActionSnake action;
@@ -14,7 +17,99 @@ public class Map {
 		this.longueur = 20;
 		this.largeur = 20;
 		map = initMap(longueur,largeur);
-		action = new ActionSnake();
+		try {
+			action = new ActionSnake(option);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		perdu = false;
+	
+	}
+	
+	public Map(int taille) {
+		this.option = option;
+		this.longueur = taille;
+		this.largeur = taille;
+		map = initMap(longueur,largeur);
+		try {
+			action = new ActionSnake(option);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		perdu = false;
+	
+	}
+	public Map(Option option) {
+		this.option = option;
+		this.longueur = option.getTailleMapFun();
+		this.largeur = option.getTailleMapFun();
+		this.enleverPoint = option.isEnleverPointFun();
+		map = initMap(longueur,largeur);
+		try {
+			action = new ActionSnake(option);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		perdu = false;
+	}
+	public Map(boolean modeNormal, Option option) {
+		this.option = option;
+		if(modeNormal) {
+			this.longueur = 20;
+			this.largeur = 20;
+			this.enleverPoint = option.isEnleverPointNormal();
+			map = initMap(longueur,largeur);
+			try {
+				action = new ActionSnake(option);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			perdu = false;
+		}else {
+			this.longueur = option.getTailleMapFun();
+			this.largeur = option.getTailleMapFun();
+			this.enleverPoint = option.isEnleverPointFun();
+			map = initMap(longueur,largeur);
+			try {
+				action = new ActionSnake(option);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			perdu = false;
+		}
+	}
+	public Map(int taille,boolean enleverPoint) {
+		this.option = option;
+		this.enleverPoint = enleverPoint;
+		this.longueur = taille;
+		this.largeur = taille;
+		map = initMap(longueur,largeur);
+		try {
+			action = new ActionSnake(option);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		perdu = false;
+	
+	}
+	public Map(boolean enleverPoint) {
+		this.option = option;
+		this.enleverPoint = enleverPoint;
+		this.longueur = 20;
+		this.largeur = 20;
+		map = initMap(longueur,largeur);
+		try {
+			action = new ActionSnake(option);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		perdu = false;
 	
 	}
@@ -98,8 +193,12 @@ public class Map {
 	}
 	public void nextMap() {
 		aJouer = false;
-		if(!(ActionSnake.scoreInt <=0)) {
+		if((!(ActionSnake.scoreInt <=0)) && enleverPoint) {
 			action.addScore(-1);
+		
+		}
+		else {
+			action.addScore(0);
 		}
 		
 		snake.nextSnake(action.getDirection());

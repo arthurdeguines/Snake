@@ -28,8 +28,8 @@ public class Option {
 		this.enleverPointNormal = true;
 		this.accelerationFun = true;
 		this.enleverPointFun = true;
-		this.vitesseFun = 50;
-		this.tailleMapFun = 20;
+		this.vitesseFun = 20;
+		this.tailleMapFun = 30;
 	}
 
 	public boolean isAccelerationNormal() {

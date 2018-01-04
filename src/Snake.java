@@ -27,13 +27,13 @@ public class Snake {
 		
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				System.out.println(Map.map[i][j].getType());
+				//System.out.println(Map.map[i][j].getType());
 				if(Map.map[i][j].getType() == TypeCase.TETE) {
 					return new Coordonne(i,j); 
 				}
 			}
 		}
-		System.out.println("ca passe");
+		//System.out.println("ca passe");
 		return null;
 	}
 	
@@ -48,12 +48,12 @@ public class Snake {
 	public List<Coordonne> nextSnake(Direction direction) {
 		int resX = 0;
 		int resY = 0;
-		System.out.println("TAILLE : " + taille);
+		//System.out.println("TAILLE : " + taille);
 		for (Coordonne coordonne : listSnake) {
 			resX = coordonne.getX();
 			resY = coordonne.getY();
 
-			System.out.println("resX = " + resX + "resY = " + resY);
+			//System.out.println("resX = " + resX + "resY = " + resY);
 			
 		}
 		if(listSnake.size() == taille) {
@@ -79,7 +79,7 @@ public class Snake {
 		}else {
 			listSnake.add(new Coordonne(resX, resY));
 		}
-		System.out.println(resX +" " + resY);
+		//System.out.println(resX +" " + resY);
 //		if(Map.map[getTete().getX()][getTete().getY()].getType() == TypeCase.SNAKE ) {
 //			Map.perdu = true;
 //		}

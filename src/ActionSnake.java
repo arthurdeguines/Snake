@@ -4,6 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,14 +19,60 @@ import javax.swing.JTextArea;
 
 import javafx.scene.text.Font;
 
-public class ActionSnake implements KeyListener,ActionListener{
+public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	Direction direction;
 	JTextArea score;
-	JFrame frame;
+	JTextArea classement;
+	String classementString = "\n";
+	static JFrame frame;
 	JButton retourMenu;
 	static JPanel[][] mapDessin ;
 	static int scoreInt = 0;
-	public ActionSnake() {
+	static int scoreDixieme = 0;
+	
+	public ActionSnake(Option option) throws SQLException {
+		long debut = System.currentTimeMillis();
+		 
+		//Traitements...
+		 
+		
+		if(Menu.getMode()) {
+	    String driverName = "org.gjt.mm.mysql.Driver";
+	    try {
+			Class.forName(driverName);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	    Connection connection = null;
+	    try {
+		    System.out.println(System.currentTimeMillis()-debut);
+
+	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
+		    System.out.println(System.currentTimeMillis()-debut);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    Statement st = connection.createStatement();
+	    
+	    String classement = "SELECT pseudo,score FROM utilisateur WHERE acceleration = "+option.isAccelerationNormal()+" AND enleverPoint="+option.isEnleverPointNormal()+" order by score desc";
+	    
+	    ResultSet rs = st.executeQuery(classement);
+        int cpt = 0;
+        while (rs.next() && cpt<10) {
+        	cpt ++;
+        	if(cpt ==9) {
+        		scoreDixieme = rs.getInt(2);
+        	}
+        	//System.out.println("Score dixieme : " + cpt);
+        	classementString+= rs.getString(1) + " : " + rs.getString(2) + "\n";
+        	
+        }
+	    connection.close();
+		}
 		fenetre();
 		this.direction = Direction.DROITE;
 	}
@@ -30,34 +82,45 @@ public class ActionSnake implements KeyListener,ActionListener{
 	public Direction getDirection() {
 		return direction;
 	}
-	public void setScore(int taille) {
-		score.setText("Score : "  + (Snake.taille-3) *100);
-	}
 	public void fenetre() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 0, 900, 637);
-		mapDessin = new JPanel[20][20];
+		mapDessin = new JPanel[Map.map.length][Map.map.length];
 		frame.getContentPane().setLayout(null);
-		JPanel panScore = new JPanel();
-		panScore.setBounds(600,0,300,140);
-		panScore.setBackground(new Color(100,200,200));
+		
 		score = new JTextArea();
-		panScore.add(score);
 		score.setText("Score : "  + (Snake.taille-3) *100);
 		score.setEditable(false);
 		score.setFocusable(false);
+		
+		JPanel panScore = new JPanel();
+		panScore.setBounds(600,0,300,140);
+		panScore.setBackground(new Color(100,200,200));
+		panScore.add(score);
+		
+		classement = new JTextArea();
+		panScore.add(classement);
+		classement.setText("Classement : " + classementString);
+		classement.setEditable(false);
+		classement.setFocusable(false);
+
+		JPanel panClassement = new JPanel();
+		panClassement.setBounds(600,140,300,360);
+		panClassement.add(classement);
+		
 		retourMenu = new JButton("Retour au menu");
-		retourMenu.setBounds(600, 400, 300, 100);
+		retourMenu.setBounds(600, 500, 300, 100);
 		retourMenu.addActionListener(this);
 		retourMenu.setFocusable(false);
 
 		score.setBackground(null);
+		classement.setBackground(null);
 		JPanel panMap = new JPanel();
 		panMap.setSize(600,600);
-		panMap.setLayout(new GridLayout(20, 20, 0, 0));
+		panMap.setLayout(new GridLayout(Map.map.length, Map.map.length, 0, 0));
 		for (int i = 0; i < Map.map.length; i++) {
 			for (int j = 0; j < Map.map.length; j++) {
-			
 				mapDessin[i][j] = new JPanel();
 				if (!(i == 0 || j == 0 || Map.map.length -1 == j || Map.map.length -1 == i)) {
 				mapDessin[i][j].setBorder(BorderFactory.createLineBorder(new Color(0,255,0),2));
@@ -69,6 +132,7 @@ public class ActionSnake implements KeyListener,ActionListener{
 		}
 		
 		dessine();
+		frame.add(panClassement);
 		frame.add(retourMenu);
 		frame.add(panMap);
 		frame.add(panScore);
@@ -153,7 +217,12 @@ public class ActionSnake implements KeyListener,ActionListener{
 		Map.fermer = true;
 		Map.perdu = false;
 		frame.dispose();
-		new Menu();
+		try {
+			new Menu();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

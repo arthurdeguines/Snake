@@ -110,7 +110,7 @@ public class OptionFrame implements ActionListener{
 		
 		enlevPoint2 = new JCheckBox("Enlever des points");
 		enlevPoint2.setBounds(238, 124, 171, 29);
-		enlevPoint2.setSelected(Main.option.isEnleverPointNormal());
+		enlevPoint2.setSelected(Main.option.isEnleverPointFun());
 		frame.getContentPane().add(enlevPoint2);
 		
 		acceleration2 = new JCheckBox("Acceleration");
@@ -133,7 +133,6 @@ public class OptionFrame implements ActionListener{
 			Main.option.setEnleverPointNormal(chckbxNewCheckBox.isSelected());
 			Main.option.setTailleMapFun((int) spinnerTaille.getValue());
 			Main.option.setVitesseFun((int) spinnerVitesse.getValue());
-			System.out.println(chckbxAcceleration.isSelected());
 		}else if(e.getSource() == btnAnluler) {
 			frame.dispose();
 		}
