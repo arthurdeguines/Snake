@@ -107,10 +107,8 @@ public class Menu implements ActionListener{
 			rdbtnModeNormal.setSelected(!rdbtnModeFun.isSelected());
 		}else if(e.getSource() == rdbtnModeNormal){
 			rdbtnModeFun.setSelected(!rdbtnModeNormal.isSelected());
-			System.out.println("Ca passe");
 		}else if(e.getSource() == classement){
 			rdbtnModeFun.setSelected(!rdbtnModeNormal.isSelected());
-			System.out.println("Ca passe");
 		}else if(e.getSource() == quitter){
 			frame.dispose();
 		}

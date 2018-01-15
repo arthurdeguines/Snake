@@ -52,16 +52,19 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
 		    System.out.println(System.currentTimeMillis()-debut);
 		    Statement st = connection.createStatement();
-
 		    String classement = "SELECT pseudo,score FROM utilisateur WHERE acceleration = "+option.isAccelerationNormal()+" AND enleverPoint="+option.isEnleverPointNormal()+" order by score desc";
 		    
 		    ResultSet rs = st.executeQuery(classement);
+        	scoreDixieme = 0;
 	        int cpt = 0;
 	        while (rs.next() && cpt<10) {
-	        	cpt ++;
 	        	if(cpt ==9) {
 	        		scoreDixieme = rs.getInt(2);
+		        	
+
 	        	}
+	        	cpt ++;
+
 	        	//System.out.println("Score dixieme : " + cpt);
 	        	classementString+= rs.getString(1) + " : " + rs.getString(2) + "\n";
 	        	connexion = true;
@@ -128,9 +131,9 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 			for (int j = 0; j < Map.map.length; j++) {
 				mapDessin[i][j] = new JPanel();
 				if (!(i == 0 || j == 0 || Map.map.length -1 == j || Map.map.length -1 == i)) {
-				mapDessin[i][j].setBorder(BorderFactory.createLineBorder(new Color(0,255,0),2));
+				mapDessin[i][j].setBorder(BorderFactory.createLineBorder((Color.BLUE),2));
 				
-				mapDessin[i][j].setBackground(Color.GREEN);
+				mapDessin[i][j].setBackground(Color.BLUE);
 				}
 				panMap.add(mapDessin[i][j]);
 			}
@@ -154,11 +157,11 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 				}else if(Map.map[i][j].getType()==TypeCase.TETE){
 					mapDessin[i][j] .setBackground(Color.ORANGE);
 				}else if(Map.map[i][j].getType()==TypeCase.SNAKE){
-					mapDessin[i][j] .setBackground(Color.BLUE);
+					mapDessin[i][j] .setBackground(Color.YELLOW);
 				}else if(Map.map[i][j].getType()==TypeCase.NOURITURE) {
-					mapDessin[i][j] .setBackground(Color.BLACK);
+					mapDessin[i][j] .setBackground(new Color(255,140,0));
 				}else {
-					mapDessin[i][j] .setBackground(Color.GREEN);
+					mapDessin[i][j] .setBackground(Color.BLUE);
 				}
 				
 			}
