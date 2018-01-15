@@ -38,7 +38,7 @@ public class Main extends JFrame implements KeyListener{
 		ActionSnake.scoreInt = 0;
 		
 		new Jeu(Menu.getMode(),option);
-		if(Map.perdu && !Map.fermer && Menu.getMode() && ActionSnake.scoreDixieme< ActionSnake.scoreInt) {
+		if(Map.perdu && !Map.fermer && Menu.getMode() && ActionSnake.scoreDixieme< ActionSnake.scoreInt && ActionSnake.connexion) {
 			new PopuEnregistrer(option);
 		}else if(Map.perdu){
 			new PopupPerdu();

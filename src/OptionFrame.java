@@ -97,7 +97,7 @@ public class OptionFrame implements ActionListener{
 		btnSauvegarder.addActionListener(this);
 		frame.getContentPane().add(btnSauvegarder);
 		
-		btnAnluler = new JButton("Annuler");
+		btnAnluler = new JButton("Quitter");
 		btnAnluler.setBackground(new Color(255,0,0));
 		btnAnluler.setBounds(238, 199, 147, 29);
 		btnAnluler.addActionListener(this);

@@ -10,7 +10,6 @@ public class Jeu {
 		//System.out.println("TEST : " + map.getPerdu() + " " + map.fermer);
 	    while (! map.getPerdu() && !Map.fermer)
 	    {
-	    
 	    	//System.out.println(Map.fermer);
 	        map.nextMap();
 	 			ActionSnake.dessine();

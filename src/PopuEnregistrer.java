@@ -100,7 +100,7 @@ public class PopuEnregistrer implements ActionListener{
 	    
 		Connection connection = null;
 		try {
-	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
+	    	connection = DriverManager.getConnection("jdbc:mysql://156.67.222.25/u774378556_snake","u774378556_kevin","azerty44");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

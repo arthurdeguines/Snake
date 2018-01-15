@@ -29,7 +29,7 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	static JPanel[][] mapDessin ;
 	static int scoreInt = 0;
 	static int scoreDixieme = 0;
-	
+	static boolean connexion;
 	public ActionSnake(Option option) throws SQLException {
 		long debut = System.currentTimeMillis();
 		 
@@ -51,27 +51,30 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 
 	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
 		    System.out.println(System.currentTimeMillis()-debut);
+		    Statement st = connection.createStatement();
 
+		    String classement = "SELECT pseudo,score FROM utilisateur WHERE acceleration = "+option.isAccelerationNormal()+" AND enleverPoint="+option.isEnleverPointNormal()+" order by score desc";
+		    
+		    ResultSet rs = st.executeQuery(classement);
+	        int cpt = 0;
+	        while (rs.next() && cpt<10) {
+	        	cpt ++;
+	        	if(cpt ==9) {
+	        		scoreDixieme = rs.getInt(2);
+	        	}
+	        	//System.out.println("Score dixieme : " + cpt);
+	        	classementString+= rs.getString(1) + " : " + rs.getString(2) + "\n";
+	        	connexion = true;
+	        }
+		    connection.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			connexion = false;
+			classementString+= " Mode hors ligne";
 			e.printStackTrace();
 		}
-	    Statement st = connection.createStatement();
 	    
-	    String classement = "SELECT pseudo,score FROM utilisateur WHERE acceleration = "+option.isAccelerationNormal()+" AND enleverPoint="+option.isEnleverPointNormal()+" order by score desc";
 	    
-	    ResultSet rs = st.executeQuery(classement);
-        int cpt = 0;
-        while (rs.next() && cpt<10) {
-        	cpt ++;
-        	if(cpt ==9) {
-        		scoreDixieme = rs.getInt(2);
-        	}
-        	//System.out.println("Score dixieme : " + cpt);
-        	classementString+= rs.getString(1) + " : " + rs.getString(2) + "\n";
-        	
-        }
-	    connection.close();
+
 		}
 		fenetre();
 		this.direction = Direction.DROITE;
@@ -101,7 +104,9 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 		
 		classement = new JTextArea();
 		panScore.add(classement);
-		classement.setText("Classement : " + classementString);
+		if(Menu.getMode()) {
+			classement.setText("Classement : " + classementString);
+		}
 		classement.setEditable(false);
 		classement.setFocusable(false);
 
