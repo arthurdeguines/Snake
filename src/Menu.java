@@ -31,7 +31,7 @@ public class Menu implements ActionListener{
 	static boolean jouer = false;
 	public Menu() throws IOException {
 		frame = new JFrame();
-		frame.setTitle("Lol");
+		frame.setTitle("Menu - Snake");
 		frame.setBounds(100, 0, 500, 630);
 		frame.getContentPane().setLayout(null);
 		

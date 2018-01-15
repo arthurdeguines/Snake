@@ -4,7 +4,7 @@ public class Jeu {
 	int vitesse;
 	boolean finished;
 	public Jeu(boolean modeNormal, Option option) {
-		vitesse = 200;
+		vitesse = 140;
 		map = new Map(modeNormal,option);
 		finished = false;
 		//System.out.println("TEST : " + map.getPerdu() + " " + map.fermer);
@@ -16,9 +16,9 @@ public class Jeu {
 				try {
 					//System.out.println("TPS:::: " + (200 - Snake.taille));
 					if(modeNormal && option.accelerationNormal) {
-						Thread.sleep (200 - Snake.taille);
+						Thread.sleep (140 - Snake.taille);
 					}else if(modeNormal){
-						Thread.sleep (200);
+						Thread.sleep (140);
 					}else if(option.isAccelerationFun()){
 						long sleep = (long) (((double)1/(((float)option.getVitesseFun())/1000))+50)-Snake.taille;
 						//System.out.println(((double)1/(((float)option.getVitesseFun())/1000))+50);

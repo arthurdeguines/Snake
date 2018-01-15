@@ -14,8 +14,8 @@ public class Map {
 	static boolean perdu;
 	public static boolean fermer = false;
 	public Map() {
-		this.longueur = 20;
-		this.largeur = 20;
+		this.longueur = 30;
+		this.largeur = 30;
 		map = initMap(longueur,largeur);
 		try {
 			action = new ActionSnake(option);
@@ -58,8 +58,8 @@ public class Map {
 	public Map(boolean modeNormal, Option option) {
 		this.option = option;
 		if(modeNormal) {
-			this.longueur = 20;
-			this.largeur = 20;
+			this.longueur = 25;
+			this.largeur = 25;
 			this.enleverPoint = option.isEnleverPointNormal();
 			map = initMap(longueur,largeur);
 			try {
