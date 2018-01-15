@@ -14,7 +14,7 @@ public class Case {
 		if(this.getType() == TypeCase.VIDE) {
 			return true;
 		}else {
-			return false;
+			return false;//
 		}
 	}
 	public TypeCase getType() {
