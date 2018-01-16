@@ -61,17 +61,12 @@ public class Menu implements ActionListener{
 		jeu = new JButton();
 		jeu.addActionListener(this);
 		jeu.setText("Jouer");
-		jeu.setBounds(30,60,200,50);
+		jeu.setBounds(frame.getWidth()/4 +15 ,60,200,50);
 		
 		option = new JButton();
 		option.addActionListener(this);
 		option.setText("Option");
 		option.setBounds(30,jeu.getHeight()+70,200,50);
-		
-		classement = new JButton();
-		classement.addActionListener(this);
-		classement.setText("Classement");
-		classement.setBounds(frame.getWidth()/2 ,60,200,50);
 		
 		quitter = new JButton();
 		quitter.addActionListener(this);
@@ -80,7 +75,6 @@ public class Menu implements ActionListener{
 		
 		menu.add(rdbtnModeFun);
 		menu.add(rdbtnModeNormal);
-		menu.add(classement);
 		menu.add(quitter);
 		menu.add(jeu);
 		menu.add(option);

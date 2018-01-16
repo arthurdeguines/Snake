@@ -97,8 +97,14 @@ public class PopuEnregistrer implements ActionListener{
 		}
 		
 	 
-	    
-		String req = "INSERT INTO utilisateur ( pseudo , score,acceleration,enleverPoint,nomPc)  VALUES  ('"+ textField.getText() +"',"+ActionSnake.scoreInt+","+option.isAccelerationNormal()+","+option.isEnleverPointNormal()+",'"+System.getProperty("user.name")+"');";
+	    String nomJoueur = "";
+	    System.out.println(textField.getText());
+	    if(textField.getText().equals("")) {
+	    	nomJoueur = "Undefined name";
+	    }else {
+	    	nomJoueur = textField.getText();
+	    }
+		String req = "INSERT INTO utilisateur ( pseudo , score,acceleration,enleverPoint,nomPc)  VALUES  ('"+ nomJoueur +"',"+ActionSnake.scoreInt+","+option.isAccelerationNormal()+","+option.isEnleverPointNormal()+",'"+System.getProperty("user.name")+"');";
 		Statement st = null;
 		try {
 			st = Connexion.connection.createStatement();
