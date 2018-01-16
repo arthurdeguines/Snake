@@ -31,7 +31,6 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	static int scoreDixieme = 0;
 	static boolean connexion;
 	public ActionSnake(Option option) throws SQLException {
-		long debut = System.currentTimeMillis();
 		 
 		//Traitements...
 		 
@@ -45,13 +44,8 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 			e1.printStackTrace();
 		}
 
-	    Connection connection = null;
-	    try {
-		    System.out.println(System.currentTimeMillis()-debut);
-
-	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
-		    System.out.println(System.currentTimeMillis()-debut);
-		    Statement st = connection.createStatement();
+	    if(Connexion.connection != null) {
+		    Statement st = Connexion.connection.createStatement();
 		    String classement = "SELECT pseudo,score FROM utilisateur WHERE acceleration = "+option.isAccelerationNormal()+" AND enleverPoint="+option.isEnleverPointNormal()+" order by score desc";
 		    
 		    ResultSet rs = st.executeQuery(classement);
@@ -60,8 +54,6 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	        while (rs.next() && cpt<10) {
 	        	if(cpt ==9) {
 	        		scoreDixieme = rs.getInt(2);
-		        	
-
 	        	}
 	        	cpt ++;
 
@@ -69,12 +61,11 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	        	classementString+= rs.getString(1) + " : " + rs.getString(2) + "\n";
 	        	connexion = true;
 	        }
-		    connection.close();
-		} catch (SQLException e) {
+			
+		}else {
 			connexion = false;
 			classementString+= " Mode hors ligne";
-			e.printStackTrace();
-		}
+	        }
 	    
 	    
 

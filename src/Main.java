@@ -13,9 +13,8 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame implements KeyListener{
 	static Option option;
-	
 	public static void main(String[] args) throws SQLException {
-		
+		new Connexion();
 		option = new Option();
 		try {
 			new Menu();

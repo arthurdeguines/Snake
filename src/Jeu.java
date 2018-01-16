@@ -1,10 +1,8 @@
 
 public class Jeu {
 	Map map ;
-	int vitesse;
 	boolean finished;
 	public Jeu(boolean modeNormal, Option option) {
-		vitesse = 140;
 		map = new Map(modeNormal,option);
 		finished = false;
 		//System.out.println("TEST : " + map.getPerdu() + " " + map.fermer);

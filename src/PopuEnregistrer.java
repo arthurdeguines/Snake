@@ -98,26 +98,22 @@ public class PopuEnregistrer implements ActionListener{
 		
 	 
 	    
-		Connection connection = null;
+		String req = "INSERT INTO utilisateur ( pseudo , score,acceleration,enleverPoint,nomPc)  VALUES  ('"+ textField.getText() +"',"+ActionSnake.scoreInt+","+option.isAccelerationNormal()+","+option.isEnleverPointNormal()+",'"+System.getProperty("user.name")+"');";
+		Statement st = null;
 		try {
-	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    Statement st = null;
-		try {
-			st = connection.createStatement();
+			st = Connexion.connection.createStatement();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-			String classement = "INSERT INTO utilisateur ( pseudo , score,acceleration,enleverPoint,nomPc)  VALUES  ('"+ textField.getText() +"',"+ActionSnake.scoreInt+","+option.isAccelerationNormal()+","+option.isEnleverPointNormal()+",'"+System.getProperty("user.name")+"');";
-			st.executeUpdate(classement);
-			System.out.println(classement);
-		connection.close();
-	    
+			try {
+				st.executeUpdate(req);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(req);
 	}
 
 	@Override
