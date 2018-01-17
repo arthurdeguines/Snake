@@ -169,7 +169,24 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 					Map.aJouer = true;
 				}
 				break;
+				
+			case KeyEvent.VK_D:
+				if(getDirection() != Direction.GAUCHE) {
+					setDirection(Direction.DROITE);
+					Map.aJouer = true;
+				}
+				break;
+				
 			case KeyEvent.VK_LEFT:
+				if(getDirection() != Direction.DROITE) {
+					setDirection(Direction.GAUCHE);
+					Map.aJouer = true;
+
+				}
+				
+				break;
+				
+			case KeyEvent.VK_Q:
 				if(getDirection() != Direction.DROITE) {
 					setDirection(Direction.GAUCHE);
 					Map.aJouer = true;
@@ -185,7 +202,23 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 				}
 				
 				break;
+			case KeyEvent.VK_Z:
+				if(getDirection() != Direction.BAS) {
+					setDirection(Direction.HAUT);
+					Map.aJouer = true;
+
+				}
+				
+				break;
 			case KeyEvent.VK_DOWN:
+				if(getDirection() != Direction.HAUT) {
+					setDirection(Direction.BAS);
+					Map.aJouer = true;
+					
+				}
+				
+				break;
+			case KeyEvent.VK_S:
 				if(getDirection() != Direction.HAUT) {
 					setDirection(Direction.BAS);
 					Map.aJouer = true;

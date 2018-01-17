@@ -36,7 +36,7 @@ public class Menu implements ActionListener{
 		frame.getContentPane().setLayout(null);
 		
 		
-		BufferedImage in =ImageIO.read(new File("./src/img.jpg"));
+		BufferedImage in =ImageIO.read(new File("./src/img.png"));
 
 		JLabel picLabel = new JLabel(new ImageIcon(in));
 		picLabel.setBounds(0, 0, 500, 400);
