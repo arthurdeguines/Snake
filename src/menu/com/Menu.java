@@ -128,9 +128,12 @@ public class Menu implements ActionListener{
 		barMenu.add(optionMenu);
 		barMenu.add(aideMenu);
 		
+		buttonGroupGame = new ButtonGroup();
 		jeuMenuSnake = new JRadioButtonMenuItem("Snake");
 		jeuMenuSnake.setSelected(true);
+		buttonGroupGame.add(jeuMenuSnake);
 		jeuMenuTetris = new JRadioButtonMenuItem("Tetris");
+		buttonGroupGame.add(jeuMenuTetris);
 		jeuMenuQuitter = new JMenuItem("Quitter");
 		
 		jeuMenu.add(jeuMenuSnake);
