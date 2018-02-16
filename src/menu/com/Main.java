@@ -1,3 +1,4 @@
+package menu.com;
 import java.awt.event.KeyEvent;
 
 import java.awt.event.KeyListener;
@@ -11,8 +12,14 @@ import java.sql.Statement;
 import javax.crypto.SecretKeyFactorySpi;
 import javax.swing.JFrame;
 
+import Snake.*;
+import Snake.Jeu;
+import Snake.Map;
+import cfranc.xxgames.model.DefaultGameModel;
+import cfranc.xxgames.view.XXGamesView;
+
 public class Main extends JFrame implements KeyListener{
-	static Option option;
+	public static Option option;
 	public static void main(String[] args) throws SQLException {
 		new Connexion();
 		option = new Option();
@@ -34,13 +41,13 @@ public class Main extends JFrame implements KeyListener{
 		Menu.jouer=false;
 		Map.perdu=false;
 		Map.fermer = false;
-		ActionSnake.scoreInt = 0;
+		InterfaceSnake.scoreInt = 0;
 		
 		new Jeu(Menu.getMode(),option);
-		System.out.println(Map.perdu && !Map.fermer && Menu.getMode() && ActionSnake.scoreDixieme< ActionSnake.scoreInt && ActionSnake.connexion);
+		System.out.println(Map.perdu && !Map.fermer && Menu.getMode() && InterfaceSnake.scoreDixieme< InterfaceSnake.scoreInt && InterfaceSnake.connexion);
 		System.out.println("Mode : " + Menu.getMode());
-		System.out.println(ActionSnake.scoreDixieme< ActionSnake.scoreInt );
-		if(Map.perdu && !Map.fermer && Menu.getMode() && ActionSnake.scoreDixieme< ActionSnake.scoreInt && ActionSnake.connexion) {
+		System.out.println(InterfaceSnake.scoreDixieme< InterfaceSnake.scoreInt );
+		if(Map.perdu && !Map.fermer && Menu.getMode() && InterfaceSnake.scoreDixieme< InterfaceSnake.scoreInt && InterfaceSnake.connexion) {
 			
 			new PopuEnregistrer(option);
 		}else if(Map.perdu){

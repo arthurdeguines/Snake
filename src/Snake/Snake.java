@@ -1,3 +1,4 @@
+package Snake;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -59,7 +60,7 @@ public class Snake {
 		if(listSnake.size() == taille) {
 			listSnake.remove(0);
 		}else {
-			ActionSnake.scoreInt += 100;
+			InterfaceSnake.scoreInt += 100;
 		}
 		
 		Map.map[resX][resY].setType(TypeCase.SNAKE);

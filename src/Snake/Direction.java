@@ -1,3 +1,4 @@
+package Snake;
 
 public enum Direction {
 	HAUT,

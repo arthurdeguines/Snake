@@ -1,8 +1,12 @@
+package Snake;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import menu.com.Menu;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,7 +82,7 @@ public class PopuEnregistrer implements ActionListener{
 		frame.getContentPane().add(Valider);
 		
 		score = new JTextField();
-		score.setText("Score : " + ActionSnake.scoreInt);
+		score.setText("Score : " + InterfaceSnake.scoreInt);
 		score.setEditable(false);
 		score.setColumns(10);
 		score.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
@@ -104,7 +108,7 @@ public class PopuEnregistrer implements ActionListener{
 	    }else {
 	    	nomJoueur = textField.getText();
 	    }
-		String req = "INSERT INTO utilisateur ( pseudo , score,acceleration,enleverPoint,nomPc)  VALUES  ('"+ nomJoueur +"',"+ActionSnake.scoreInt+","+option.isAccelerationNormal()+","+option.isEnleverPointNormal()+",'"+System.getProperty("user.name")+"');";
+		String req = "INSERT INTO utilisateur ( pseudo , score,acceleration,enleverPoint,nomPc)  VALUES  ('"+ nomJoueur +"',"+InterfaceSnake.scoreInt+","+option.isAccelerationNormal()+","+option.isEnleverPointNormal()+",'"+System.getProperty("user.name")+"');";
 		Statement st = null;
 		try {
 			st = Connexion.connection.createStatement();
@@ -133,7 +137,7 @@ public class PopuEnregistrer implements ActionListener{
 		Menu.jouer=true;
 		Map.perdu=false;
 		Map.fermer = false;
-		ActionSnake.frame.dispose();
+		InterfaceSnake.frame.dispose();
 		frame.dispose();
 		
 	}

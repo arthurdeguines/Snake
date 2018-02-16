@@ -1,5 +1,8 @@
+package Snake;
+import cfranc.xxgames.model.Block;
+import cfranc.xxgames.model.GameModelInterface;
 
-public class Jeu {
+public class Jeu implements GameModelInterface{
 	Map map ;
 	boolean finished;
 	public Jeu(boolean modeNormal, Option option) {
@@ -10,7 +13,7 @@ public class Jeu {
 	    {
 	    	//System.out.println(Map.fermer);
 	        map.nextMap();
-	 			ActionSnake.dessine();
+	 			InterfaceSnake.dessine();
 				try {
 					//System.out.println("TPS:::: " + (200 - Snake.taille));
 					if(modeNormal && option.accelerationNormal) {
@@ -34,5 +37,24 @@ public class Jeu {
 	      
 	    }
 	   // System.out.println("PERDU!!");
+	}
+	@Override
+	public int getNbGridColumns() {
+		
+		return 25;
+	}
+	@Override
+	public int getNbGridRows() {
+		// TODO Auto-generated method stub
+		return 25;
+	}
+	@Override
+	public Block getBlock(int rowIndex, int columnIndex) {
+		
+		return new Block(rowIndex, columnIndex);
+	}
+	@Override
+	public int cellSize() {
+		return 20;
 	}
 }

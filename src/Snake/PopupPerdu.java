@@ -1,7 +1,10 @@
+package Snake;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import menu.com.Menu;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -69,10 +72,10 @@ public class PopupPerdu implements ActionListener{
 			Menu.jouer=true;
 			Map.perdu=false;
 			Map.fermer = false;
-			ActionSnake.frame.dispose();
+			InterfaceSnake.frame.dispose();
 			frame.dispose();
 		}else {
-			ActionSnake.frame.dispose();
+			InterfaceSnake.frame.dispose();
 			frame.dispose();
 			try {
 				new Menu();

@@ -1,3 +1,4 @@
+package Snake;
 
 public class Case {
 	TypeCase type;

@@ -1,3 +1,4 @@
+package Snake;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
+import menu.com.Main;
+
 import javax.swing.JToggleButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;

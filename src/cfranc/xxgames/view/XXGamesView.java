@@ -105,7 +105,7 @@ public class XXGamesView extends Observable{
 		this(new GameTableModel(gameModel));
 	}
 
-	public XXGamesView(GameTableModel gameTableModel) {		
+	public XXGamesView(GameTableModel gameTableModel) {	
 		this.gameTableModel=gameTableModel;
 		initialize();
 	}
@@ -363,6 +363,7 @@ class GameTableModel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("Ca passe update");
 		if(arg instanceof Block){
 			updateBlock((Block)arg);
 		}
@@ -379,10 +380,12 @@ class GameTableModel implements Observer {
 	}
 	
 	private void updateBlock(Block arg) {
+		
 		int iRow = ((Block)arg).getIRow();
 		int iCol = ((Block)arg).getICol();
 		Color c = ((Block)arg).getColor();
-		this.panels[iRow][iCol].setBackground(c);		
+		this.panels[iRow][iCol].setBackground(c);	
+		
 	}
 
 }

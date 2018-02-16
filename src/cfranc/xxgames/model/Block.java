@@ -7,12 +7,12 @@ public class Block {
 	int iRow;
 	int iCol;
 	
-	Block(int iRow, int iCol, Color color) {
+	public Block(int iRow, int iCol, Color color) {
 		this(iRow,iCol);
 		this.color = color;
 	}
 	
-	protected Block(int iRow, int iCol) {
+	public Block(int iRow, int iCol) {
 		super();
 		this.iRow = iRow;
 		this.iCol = iCol;

@@ -1,3 +1,4 @@
+package Snake;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,8 +14,7 @@ public class Connexion {
 		try {
 	    	connection = DriverManager.getConnection("jdbc:mysql://mysql-arthurdeguines-projets.alwaysdata.net/arthurdeguines-projets_snake","150193","azerty44");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Probleme de connexion internet.");
 		}
 	    System.out.println(System.currentTimeMillis()-debut);
 

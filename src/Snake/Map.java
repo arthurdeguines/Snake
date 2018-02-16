@@ -1,3 +1,4 @@
+package Snake;
 import java.awt.Desktop.Action;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,15 +11,15 @@ public class Map {
 	boolean enleverPoint = true;
 	static Case[][] map;
 	Snake snake;
-	ActionSnake action;
-	static boolean perdu;
+	InterfaceSnake action;
+	public static boolean perdu;
 	public static boolean fermer = false;
 	public Map() {
 		this.longueur = 30;
 		this.largeur = 30;
 		map = initMap(longueur,largeur);
 		try {
-			action = new ActionSnake(option);
+			action = new InterfaceSnake(option);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,7 +34,7 @@ public class Map {
 		this.largeur = taille;
 		map = initMap(longueur,largeur);
 		try {
-			action = new ActionSnake(option);
+			action = new InterfaceSnake(option);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +49,7 @@ public class Map {
 		this.enleverPoint = option.isEnleverPointFun();
 		map = initMap(longueur,largeur);
 		try {
-			action = new ActionSnake(option);
+			action = new InterfaceSnake(option);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +64,7 @@ public class Map {
 			this.enleverPoint = option.isEnleverPointNormal();
 			map = initMap(longueur,largeur);
 			try {
-				action = new ActionSnake(option);
+				action = new InterfaceSnake(option);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -75,7 +76,7 @@ public class Map {
 			this.enleverPoint = option.isEnleverPointFun();
 			map = initMap(longueur,largeur);
 			try {
-				action = new ActionSnake(option);
+				action = new InterfaceSnake(option);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -90,7 +91,7 @@ public class Map {
 		this.largeur = taille;
 		map = initMap(longueur,largeur);
 		try {
-			action = new ActionSnake(option);
+			action = new InterfaceSnake(option);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,7 +106,7 @@ public class Map {
 		this.largeur = 20;
 		map = initMap(longueur,largeur);
 		try {
-			action = new ActionSnake(option);
+			action = new InterfaceSnake(option);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -193,7 +194,7 @@ public class Map {
 	}
 	public void nextMap() {
 		aJouer = false;
-		if((!(ActionSnake.scoreInt <=0)) && enleverPoint) {
+		if((!(InterfaceSnake.scoreInt <=0)) && enleverPoint) {
 			action.addScore(-1);
 		
 		}

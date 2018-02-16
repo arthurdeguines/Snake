@@ -1,3 +1,4 @@
+package Snake;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,9 +18,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import javafx.scene.text.Font;
+import cfranc.xxgames.model.GameCtrlInterface;
+import cfranc.xxgames.model.OneDirection;
+import menu.com.Menu;
 
-public class ActionSnake  extends Thread implements KeyListener,ActionListener{
+public class InterfaceSnake  extends Thread implements KeyListener,ActionListener,GameCtrlInterface{
 	Direction direction;
 	JTextArea score;
 	JTextArea classement;
@@ -27,10 +30,10 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 	static JFrame frame;
 	JButton retourMenu;
 	static JPanel[][] mapDessin ;
-	static int scoreInt = 0;
-	static int scoreDixieme = 0;
-	static boolean connexion;
-	public ActionSnake(Option option) throws SQLException {
+	public static int scoreInt = 0;
+	public static int scoreDixieme = 0;
+	public static boolean connexion;
+	public InterfaceSnake(Option option) throws SQLException {
 		 
 		//Traitements...
 		 
@@ -256,6 +259,53 @@ public class ActionSnake  extends Thread implements KeyListener,ActionListener{
 			e.printStackTrace();
 		}
 		
+		
+	}
+	@Override
+	public boolean advance() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void changeDirection(OneDirection newDirection) {
+		if(Map.aJouer == false) {
+			switch (newDirection)
+			{
+				case RIGHT:
+					if(getDirection() != Direction.GAUCHE) {
+						setDirection(Direction.DROITE);
+						Map.aJouer = true;
+					}
+					break;
+					
+				case LEFT:
+					if(getDirection() != Direction.DROITE) {
+						setDirection(Direction.GAUCHE);
+						Map.aJouer = true;
+
+					}
+					
+					break;
+					
+				case UP:
+					if(getDirection() != Direction.BAS) {
+						setDirection(Direction.HAUT);
+						Map.aJouer = true;
+
+					}
+					
+					break;
+					
+				case DOWN:
+					if(getDirection() != Direction.HAUT) {
+						setDirection(Direction.BAS);
+						Map.aJouer = true;
+						
+					}
+					
+					break;
+			}
+		}
 		
 	}
 }
