@@ -47,8 +47,8 @@ public class Menu implements ActionListener{
 	JRadioButton rdbtnModeFun;
 	static JRadioButton rdbtnModeNormal;
 	
-	BufferedImage in;
-	
+	BufferedImage inSnake, inTetris;
+	JLabel picLabelSnake,picLabelTetris;
 	public static boolean jouer = false;
 	public Menu() throws IOException {
 		frame = new JFrame();
@@ -59,16 +59,23 @@ public class Menu implements ActionListener{
 		frame.setJMenuBar(barMenu);
 		
 		
-		in =ImageIO.read(new File("./src/imgSnake.png"));
 		
-		JLabel picLabel = new JLabel(new ImageIcon(in));
-		picLabel.setBounds(0, 0, 500, 400);
-		frame.add(picLabel);
 		
 		menu = new JPanel();
 		menu.setBounds(0, 400, 500, 300);
 		menu.setBackground(new Color(100,200,200));
 		menu.setLayout(null);
+		
+		inSnake =ImageIO.read(new File("./src/imgSnake.png"));
+		picLabelSnake  = new JLabel(new ImageIcon(inSnake));
+		picLabelSnake.setBounds(0, 0, 500, 400);
+		frame.add(picLabelSnake);
+		
+		inTetris =ImageIO.read(new File("./src/imgTetris.png"));
+		picLabelTetris = new JLabel(new ImageIcon(inTetris));
+		picLabelTetris.setBounds(0, 0, 500, 400);
+		picLabelTetris.setVisible(false);
+		frame.add(picLabelTetris);
 		
 		rdbtnModeNormal = new JRadioButton("Mode normal");
 		rdbtnModeNormal.setSelected(true);
@@ -131,8 +138,27 @@ public class Menu implements ActionListener{
 		buttonGroupGame = new ButtonGroup();
 		jeuMenuSnake = new JRadioButtonMenuItem("Snake");
 		jeuMenuSnake.setSelected(true);
+		
+		jeuMenuSnake.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				picLabelSnake.setVisible(true);
+				picLabelTetris.setVisible(false);
+				
+				
+			}
+		});
 		buttonGroupGame.add(jeuMenuSnake);
 		jeuMenuTetris = new JRadioButtonMenuItem("Tetris");
+		jeuMenuTetris.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				picLabelSnake.setVisible(false);
+				picLabelTetris.setVisible(true);
+			}
+		});
 		buttonGroupGame.add(jeuMenuTetris);
 		jeuMenuQuitter = new JMenuItem("Quitter");
 		
@@ -192,20 +218,35 @@ public class Menu implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jeu) {
-			jouer = true;
-			frame.dispose();
-		}else if(e.getSource() == option){
-			new OptionFrame();
-		}else if(e.getSource() == rdbtnModeFun){
-			rdbtnModeNormal.setSelected(!rdbtnModeFun.isSelected());
-		}else if(e.getSource() == rdbtnModeNormal){
-			rdbtnModeFun.setSelected(!rdbtnModeNormal.isSelected());
-		}else if(e.getSource() == classement){
-			rdbtnModeFun.setSelected(!rdbtnModeNormal.isSelected());
-		}else if(e.getSource() == quitter){
-			frame.dispose();
+		if(jeuMenuSnake.isSelected()) {
+			if(e.getSource() == jeu) {
+				jouer = true;
+				frame.dispose();
+			}else if(e.getSource() == option){
+				new OptionFrame();
+			}else if(e.getSource() == rdbtnModeFun){
+				rdbtnModeNormal.setSelected(!rdbtnModeFun.isSelected());
+			}else if(e.getSource() == rdbtnModeNormal){
+				rdbtnModeFun.setSelected(!rdbtnModeNormal.isSelected());
+			}else if(e.getSource() == classement){
+				rdbtnModeFun.setSelected(!rdbtnModeNormal.isSelected());
+			}else if(e.getSource() == quitter){
+				frame.dispose();
+			}
+		}else if(jeuMenuTetris.isSelected()){
+			if(e.getSource() == jeu) {
+				//TODO
+			}else if(e.getSource() == option){
+				//TODO
+			}else if(e.getSource() == rdbtnModeFun){
+				//TODO
+			}else if(e.getSource() == rdbtnModeNormal){
+				//TODO
+			}else if(e.getSource() == classement){
+				//TODO
+			}else if(e.getSource() == quitter){
+				frame.dispose();
+			}
 		}
-		
 	} 
 }

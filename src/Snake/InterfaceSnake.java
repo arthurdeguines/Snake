@@ -255,8 +255,7 @@ public class InterfaceSnake  extends Thread implements KeyListener,ActionListene
 		try {
 			new Menu();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Probleme génération menu");
 		}
 		
 		
